@@ -33,6 +33,17 @@ jobs:
         with:
           node-version: 14
 
+      - name: Get Fleek site name
+        id: site-name
+        run: |
+          echo "::set-output name=MESSAGE::$(cat .fleek.json | grep name | cut -d ':' -f2 | tr -d '\"' | tr -d '[:space:]').on.fleek.co"
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            - Site deployed at ${{ steps.site-name.outputs.MESSAGE }}
+
       - name: Upgrade to latest npm version
         run: npm install -g npm@^8.5.3
 
