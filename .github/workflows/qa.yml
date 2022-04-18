@@ -36,7 +36,7 @@ jobs:
       - name: Get Fleek site name
         id: site-name
         run: |
-          echo "::set-output name=MESSAGE::$(cat .fleek.json | grep name | cut -d ':' -f2 | tr -d '\"' | tr -d '[:space:]').on.fleek.co"
+          echo "::set-output name=MESSAGE::https://$(cat .fleek.json | grep name | cut -d ':' -f2 | tr -d '\"' | tr -d '[:space:]').on.fleek.co"
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
@@ -94,7 +94,7 @@ jobs:
       - name: Get Fleek site name
         id: site-name
         run: |
-          echo "::set-output name=MESSAGE::$(cat .fleek.json | grep name | cut -d ':' -f2 | tr -d '\"' | tr -d '[:space:]').on.fleek.co"
+          echo "::set-output name=MESSAGE::https://$(cat .fleek.json | grep name | cut -d ':' -f2 | tr -d '\"' | tr -d '[:space:]').on.fleek.co"
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
